@@ -1,6 +1,7 @@
 # todo-app
 
 Uygulama çalışır durumdadır.
+
 React & spring boot projesidir.
 
 1. Localinizde bir klasör yaratın, 
