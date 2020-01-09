@@ -18,7 +18,7 @@ class TodoApplicationTests {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
 		IntStream.range(0,10).forEach(
-				value -> System.out.println(encoder.encode("esra"))
+				value -> System.out.println(encoder.encode("erman"))
 		);
 	}
 

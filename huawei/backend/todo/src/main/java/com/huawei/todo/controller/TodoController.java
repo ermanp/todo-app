@@ -1,9 +1,7 @@
 package com.huawei.todo.controller;
 
-import com.huawei.todo.Utils.DateUtils;
 import com.huawei.todo.model.Todo;
 import com.huawei.todo.model.User;
-import com.huawei.todo.service.TodoHardCodedService;
 import com.huawei.todo.service.TodoService;
 import com.huawei.todo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")

@@ -23,10 +23,10 @@ public class JwtInMemoryUserDetailsService implements UserDetailsService {
 
   static {
     inMemoryUserList.add(new JwtUserDetails(1L, "",
-            "", "ROLE_USER_2"));
+            "", "USER"));
 
     inMemoryUserList.add(new JwtUserDetails(2L, "",
-            "", "ROLE_USER_2"));
+            "", "USER"));
 
   }
 
