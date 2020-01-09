@@ -1,5 +1,6 @@
 package com.huawei.todo.controller;
 
+import com.huawei.todo.Utils.DateUtils;
 import com.huawei.todo.model.Todo;
 import com.huawei.todo.model.User;
 import com.huawei.todo.service.TodoHardCodedService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -48,10 +50,6 @@ public class TodoController {
 
     @GetMapping("/users/{username}/todos/{id}")
     public Todo getTodo(@PathVariable String username, @PathVariable long id){
-
-        System.out.println(username);
-
-        System.out.println(id);
 
         Todo todo = todoService.findTodoById(id);
 

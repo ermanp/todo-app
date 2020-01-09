@@ -21,15 +21,18 @@ class TodoComponent extends Component {
 
     componentDidMount() {
 
-        if (this.state.id === -1) {
+        if (this.state.id === '-1') {
+            console.log('2525252525');
             return
         }
 
+        console.log('29292922*');
         let username = AuthenticationService.getLoggedInUserName()
+        console.log(username);
         TodoDataService.retrieveTodo(username, this.state.id)
             .then(response => this.setState({
                 description: response.data.description,
-                targetDate: moment(new Date()).format('YYYY-MM-DD')
+                targetDate: moment(response.data.targetDate).format('YYYY-MM-DD')
             }))
     }
 
