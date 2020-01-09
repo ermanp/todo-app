@@ -1,5 +1,5 @@
 insert into user(id,username,password)
-values(1004,'erman','erman');
+values(1004,'erman','$2a$10$zTGH0tDFQLSLr94COtbLyuVTKBsUZvCoRhmW6I4VtLx94.TVDTj0i');
 
 insert into user(id,username,password)
 values(1005,'esra','esra');

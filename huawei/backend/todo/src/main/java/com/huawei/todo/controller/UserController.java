@@ -5,6 +5,7 @@ import com.huawei.todo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +21,11 @@ public class UserController {
     @PostMapping("/user/sign-up")
     public ResponseEntity<User> createUser(@RequestBody User user){
 
-        System.out.println(user);
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+        String encodedPassword = encoder.encode(user.getPassword());
+
+        user.setPassword(encodedPassword);
 
         User newUser = userRepository.save(user);
 
