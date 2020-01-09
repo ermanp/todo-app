@@ -55,13 +55,10 @@ public class TodoController {
 
         Todo todo = todoService.findTodoById(id);
 
-      //  Todo todo = new Todo(1003L,"asd",new Date(),true);
-
         todo.setUser(null);
 
         return todo;
 
-      //  return todoService.findById(id);
 
     }
 
