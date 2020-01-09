@@ -6,11 +6,10 @@ values(1005,'esra','esra');
 
 
 insert into todo(id,description,target_date,is_done,user_id)
-values(1001,'Learn JPA',sysdate(),false,1004);
+values(1001,'Register Component',sysdate(),false,1004);
 
 insert into todo(id,description,target_date,is_done,user_id)
-values(1002,'Learn Hibernate',sysdate(),false,1004);
+values(1002,'Dynamic Atuhentication',sysdate(),false,1004);
 
 insert into todo(id,description,target_date,is_done,user_id)
-values(1003,'Learn Spring',sysdate(),false,1005);
-
+values(1003,'Formik Operations',sysdate(),false,1005);
