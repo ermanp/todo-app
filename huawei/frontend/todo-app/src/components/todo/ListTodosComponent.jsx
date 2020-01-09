@@ -1,0 +1,132 @@
+import React, {Component} from 'react'
+import AuthenticationService from './AuthenticationService.js'
+import TodoDataService from '../../api/todo/TodoDataService.js'
+import moment from 'moment'
+
+class ListTodosComponent extends Component {
+    constructor(props) {
+        console.log('constructor')
+        super(props)
+        this.state = {
+            todos:
+                [],
+                message : null
+        }
+        this.deleteTodoClicked = this.deleteTodoClicked.bind(this);
+        this.refreshTodos = this.refreshTodos.bind(this);
+        this.updateTodoClicked = this.updateTodoClicked.bind(this);
+        this.addTodoClicked = this.addTodoClicked.bind(this);
+        this.updateTodoStatusClicked = this.updateTodoStatusClicked.bind(this);
+
+
+    }
+
+    componentDidMount(){
+        console.log('componentDidMount')
+        this.refreshTodos();
+        
+
+    }
+
+    refreshTodos(){
+        let username = AuthenticationService.getLoggedInUserName()
+        console.log('refreshTodos ' + username)
+        TodoDataService.retrieveAlltodos(username)
+        .then(
+            response => {
+                console.log(response)
+                this.setState({todos : response.data})
+            }
+        )
+
+    }
+
+    deleteTodoClicked(id){
+        let username = AuthenticationService.getLoggedInUserName();
+        TodoDataService.deleteTodo(username,id)
+        .then(
+            response => {
+                this.setState({message : `Delete of todo ${id} Successful`})
+                this.refreshTodos();
+            }
+        )
+
+    }
+
+    updateTodoClicked(id){
+        console.log('update ' + id);
+        this.props.history.push(`/todos/${id}`)
+
+    }
+
+    updateTodoStatusClicked(id){
+        console.log('update todo status ' + id);
+        let username = AuthenticationService.getLoggedInUserName();
+        TodoDataService.changeTodoStatus(username,id)
+        .then(
+            response=>{
+                this.setState({message : `Status changed successfully`})
+                this.refreshTodos();
+            }
+        )
+
+        
+    }
+
+    addTodoClicked(){
+        this.props.history.push('/todos/-1')
+
+    }
+    render() {
+        console.log('render')
+        return (
+            <div>
+                <h1>List Todos</h1>
+                {this.state.message && <div className="alert alert-success">{this.state.message}</div>}
+                <div className="container">
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th>description</th>
+                            <th>Done</th>
+                            <th>Date</th>
+                            <th>Change Status</th>
+                            <th>Update</th>
+                            <th>Delete</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            this.state.todos.map(
+                                todo =>
+                                    <tr key={todo.id}>
+                                        <td>{todo.description}</td>
+                                        <td>{todo.done.toString()}</td>
+                                        <td>{moment(todo.targetDate).format('YYYY-MM-DD')}</td>
+                                        
+                                       
+                                        <td><button className="btn btn-success" 
+                                                    onClick={() => this.updateTodoStatusClicked(todo.id)}>Change Status</button></td>
+                                        <td><button className="btn btn-success" 
+                                                    onClick={() => this.updateTodoClicked(todo.id)}>Update</button></td>
+                                        <td><button className="btn btn-warning" 
+                                                    onClick={() => this.deleteTodoClicked(todo.id)}>Delete</button></td>
+                                                    
+                                    </tr>
+
+                            )
+
+                        }
+                    </tbody>
+                </table>
+                <div className="row">
+                    <button className="btn btn-success" onClick={this.addTodoClicked}>Add</button>
+                </div>
+                </div>
+            </div>
+        )
+    }
+}
+
+export default ListTodosComponent
