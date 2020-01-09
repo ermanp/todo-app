@@ -1,6 +1,7 @@
 # todo-app
 
 Uygulama çalışır durumdadır.
+React & spring boot projesidir.
 
 1. Localinizde bir klasör yaratın, 
   burada 'Git Bash Here' diyerek açılan pencerede 'git clone https://github.com/ermanp/todo-app.git' komunu ile projeyi loaclinize çekin.
